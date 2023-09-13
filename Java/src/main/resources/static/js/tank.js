@@ -1,29 +1,70 @@
+const url = 'http://localhost:8080/update';
+let pwmValue = 100;
+
+const data = {
+    forward: {
+        direction: 'forward',
+        pwm: pwmValue
+    },
+
+    left: {
+        direction: 'left',
+        pwm: pwmValue
+    },
+
+    right: {
+        direction: 'right',
+        pwm: pwmValue
+    },
+
+    backwards: {
+        direction: 'backwards',
+        pwm: pwmValue
+    },
+
+    stop: {
+        direction: 'stop',
+        pwm: pwmValue
+    }
+}
+
+function getOptions(value) {
+    return {
+        method: 'POST',
+        body: JSON.stringify(data[value]),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }
+}
+
 document.getElementById('forward').addEventListener('click', (e) => {
-    fetch('http://192.168.0.129:8080/forward', {method: 'POST'})
+    fetch(url, getOptions('forward'))
     .then(response => response.json())
     .then(response => console.log(response))
 });
 
 document.getElementById('left').addEventListener('click', (e) => {
-    fetch('http://192.168.0.129:8080/left', {method: 'POST'})
+    fetch(url, getOptions('left'))
     .then(response => response.json())
     .then(response => console.log(response))
 });
 
 document.getElementById('right').addEventListener('click', (e) => {
-    fetch('http://192.168.0.129:8080/right', {method: 'POST'})
+    fetch(url, getOptions('right'))
     .then(response => response.json())
     .then(response => console.log(response))
 });
 
 document.getElementById('backwards').addEventListener('click', (e) => {
-    fetch('http://192.168.0.129:8080/backwards', {method: 'POST'})
+    fetch(url, getOptions('backwards'))
     .then(response => response.json())
     .then(response => console.log(response))
 });
 
 document.getElementById('stop').addEventListener('click', (e) => {
-    fetch('http://192.168.0.129:8080/stop', {method: 'POST'})
+    fetch(url, getOptions('stop'))
     .then(response => response.json())
     .then(response => console.log(response))
 });

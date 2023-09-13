@@ -1,3 +1,4 @@
+import requests
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
@@ -13,61 +14,60 @@ for i in interface:
         GPIO.setup(i, GPIO.OUT)
         GPIO.output(i, 0)
 
-def forward():
-        GPIO.output(5, 1)
-        GPIO.output(6, 0)
-        GPIO.output(13, 1)
-        GPIO.output(19, 0)
+# 5 - prawo przód
+# 19 - prawo tył
+# 13 - lewo przód
+# 6 - lewo tył
 
-def backwards():
-        GPIO.output(5, 0)
-        GPIO.output(6, 1)
+def leftMotor(value):
+    if value == 0:
         GPIO.output(13, 0)
-        GPIO.output(19, 1)
-
-def right():
-        GPIO.output(13, 1)
-        GPIO.output(19, 1)
-        GPIO.output(5, 0)
         GPIO.output(6, 0)
 
-def left():
-        GPIO.output(5, 1)
-        GPIO.output(6, 1)
+    elif(value) > 0:
+        GPIO.output(13, 1)
+        GPIO.output(6, 0)
+
+    else:
         GPIO.output(13, 0)
+        GPIO.output(6, 1)
+
+def rightMotor(value):
+    if(value == 0):
+        GPIO.output(5, 0)
         GPIO.output(19, 0)
 
-def stop():
-	for i in interface:
-		GPIO.output(i, 0)
+    elif value > 0:
+        GPIO.output(5, 1)
+        GPIO.output(19, 0)
+
+    else:
+        GPIO.output(5, 0)
+        GPIO.output(19, 1)
 
 try:
-        while(True):
-                direction = input("")
+    while(True):
+        
+        response = requests.get("http://localhost:8080/tank")
+        json = response.json()
 
-                if direction == "1":
-                        forward()
+        if response.status_code == 204:
+            continue
 
-                elif direction == "2":
-                        backwards()
+        elif response.status_code == 200:
+            left = json['left']
+            right = json['right']
+            leftMotor(left)
+            rightMotor(right)
 
-                elif direction == "3":
-                        right()
+        # elif direction == "0":
+        #     for i in interface:
+        #             GPIO.output(i, 0)
 
-                elif direction == "4":
-                        left()
+        #     GPIO.cleanup()
 
-                elif direction == "5":
-                        stop()
-
-                elif direction == "0":
-                        for i in interface:
-                                GPIO.output(i, 0)
-
-                        GPIO.cleanup()
-
-                        print("Quit!")
-                        break
+        #     print("Quit!")
+        #     break
 
 
 except KeyboardInterrupt:
