@@ -48,7 +48,7 @@ def rightMotor(value):
 try:
     while(True):
         
-        response = requests.get("http://localhost:8080/tank")
+        response = requests.get("http://192.168.0.167:8080/tank")
         json = response.json()
 
         if response.status_code == 204:
@@ -72,8 +72,16 @@ try:
 
 except KeyboardInterrupt:
 
-        for i in interface:
-                GPIO.output(i, 0)
+    for i in interface:
+            GPIO.output(i, 0)
 
-        GPIO.cleanup()
-        print("interrupted!")
+    GPIO.cleanup()
+    print("interrupted!")
+
+except ConnectionError:
+
+    for i in interface:
+        GPIO.output(i, 0)
+
+    GPIO.cleanup()
+    print("Connection Error :<")
