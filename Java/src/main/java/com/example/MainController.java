@@ -46,7 +46,7 @@ public class MainController {
     @ResponseBody
     public DeferredResult<ResponseEntity<TankResponse>> getTankResponse() {
 
-        DeferredResult<ResponseEntity<TankResponse>> output = new DeferredResult<>(1000L);
+        DeferredResult<ResponseEntity<TankResponse>> output = new DeferredResult<>(10000L);
         output.onTimeout(() -> {
             output.setErrorResult(ResponseEntity.noContent().build());
         });

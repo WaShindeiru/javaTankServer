@@ -69,19 +69,12 @@ try:
         #     print("Quit!")
         #     break
 
-
-except KeyboardInterrupt:
-
-    for i in interface:
-            GPIO.output(i, 0)
-
-    GPIO.cleanup()
-    print("interrupted!")
-
 except ConnectionError:
 
+    print("Connection Error :<")
+
+finally:
     for i in interface:
         GPIO.output(i, 0)
 
     GPIO.cleanup()
-    print("Connection Error :<")
