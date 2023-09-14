@@ -1,4 +1,4 @@
-const url = 'http://192.168.0.167:8080/update';
+const url = 'http://192.168.0.167:80/update';
 let pwmValue = 100;
 
 const data = {

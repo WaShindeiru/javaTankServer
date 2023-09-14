@@ -1,5 +1,6 @@
 import requests
 import RPi.GPIO as GPIO
+import time
 
 GPIO.setmode(GPIO.BCM)
 
@@ -49,18 +50,26 @@ def rightMotor(value):
 
 try:
     while(True):
+
+        leftMotor(100)
+        rightMotor(100)
+
+        time.sleep(3)
+
+        leftMotor(-100)
+        rightMotor(-100)
         
-        response = requests.get(address)
+        # response = requests.get(address)
 
-        if response.status_code == 204:
-            continue
+        # if response.status_code == 204:
+        #     continue
 
-        elif response.status_code == 200:
-            json = response.json()
-            left = json['left']
-            right = json['right']
-            leftMotor(left)
-            rightMotor(right)
+        # elif response.status_code == 200:
+        #     json = response.json()
+        #     left = json['left']
+        #     right = json['right']
+        #     leftMotor(left)
+        #     rightMotor(right)
 
         # elif direction == "0":
         #     for i in interface:
