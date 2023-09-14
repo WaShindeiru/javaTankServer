@@ -6,7 +6,7 @@ GPIO.setmode(GPIO.BCM)
 power = (26, 16)
 interface = (19, 13, 6, 5)
 
-address = "http://192.168.0.167:8080/tank"
+address = "http://192.168.0.167:80/tank"
 
 for i in power:
         GPIO.setup(i, GPIO.OUT)
@@ -71,7 +71,7 @@ try:
         #     print("Quit!")
         #     break
 
-except Error:
+except Exception as e:
 
     print("Connection Error :<")
 
