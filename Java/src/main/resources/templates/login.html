@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Please Log In</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content=""/>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    <div class="flexContainer">
+        <div class="container">
+            <h1>Please Log In</h1>
+            <form th:action="@{/login}" method="POST">
+                <div>
+                    <input type="text" name="username" placeholder="Username" class="input"/>
+                </div>
+                <div>
+                    <input type="password" name="password" placeholder="Password" class="input"/>
+                </div>
+                <input type="submit" value="Log in" class=""/>
+        </div>
+    </div>
+</form>
+</body>
+</html>

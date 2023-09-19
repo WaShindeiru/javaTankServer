@@ -1,0 +1,30 @@
+body {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serifl;
+    background-color: rgb(186, 221, 186);
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    margin-bottom: 10px;
+    border: 2px solid green;
+    padding: 4px 10px;
+    font-size: 18px;
+}
+
+.button {
+    font-size: 16px;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.button:hover {
+    background-color: rgb(44, 87, 44);
+}

@@ -1,5 +1,14 @@
+body {
+    background-color: rgb(162, 223, 223);
+}
+
 .buttonDiv {
     display: inline-block
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: center;
 }
 
 button {
